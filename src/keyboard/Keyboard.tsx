@@ -32,6 +32,7 @@ import { LockState } from "@zmkfirmware/zmk-studio-ts-client/core";
 import { deserializeLayoutZoom, LayoutZoom } from "./PhysicalLayout";
 import { useLocalStorageState } from "../misc/useLocalStorageState";
 import { KeymapContext } from "../KeymapContext";
+import { ExportImportWrapper } from "../ExportImportWrapper";
 
 type BehaviorMap = Record<number, GetBehaviorDetailsResponse>;
 
@@ -159,7 +160,17 @@ function useLayouts(): [
   ];
 }
 
-export default function Keyboard() {
+export interface KeyboardProps {
+  showExportImport?: boolean;
+  onCloseExportImport?: () => void;
+  deviceName?: string;
+}
+
+export default function Keyboard({
+  showExportImport = false,
+  onCloseExportImport,
+  deviceName,
+}: KeyboardProps) {
   const [
     layouts,
     _setLayouts,
@@ -513,6 +524,13 @@ export default function Keyboard() {
 
   return (
     <KeymapContext.Provider value={keymapContextValue}>
+      {showExportImport && onCloseExportImport && (
+        <ExportImportWrapper
+          open={showExportImport}
+          onClose={onCloseExportImport}
+          deviceName={deviceName}
+        />
+      )}
       <div className="grid grid-cols-[auto_1fr] grid-rows-[1fr_minmax(10em,auto)] bg-base-300 max-w-full min-w-0 min-h-0">
         <div className="p-2 flex flex-col gap-2 bg-base-200 row-span-2">
           {layouts && (
@@ -542,7 +560,14 @@ export default function Keyboard() {
           )}
         </div>
         {layouts && keymap && behaviors && (
-          <div className="p-2 col-start-2 row-start-1 grid items-center justify-center relative min-w-0">
+          <div
+            className="p-2 col-start-2 row-start-1 grid items-center justify-center relative min-w-0"
+            style={{
+              // Establish 3D perspective context to contain key hover transforms
+              // This prevents the 3D transforms from visually overlapping modal dialogs
+              perspective: "2000px",
+            }}
+          >
             <KeymapComp
               keymap={keymap}
               layout={layouts[selectedPhysicalLayoutIndex]}

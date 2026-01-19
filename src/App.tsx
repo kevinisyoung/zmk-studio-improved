@@ -29,7 +29,6 @@ import { valueAfter } from "./misc/async";
 import { AppFooter } from "./AppFooter";
 import { AboutModal } from "./AboutModal";
 import { LicenseNoticeModal } from "./misc/LicenseNoticeModal";
-import { ExportImportWrapper } from "./ExportImportWrapper";
 
 declare global {
   interface Window {
@@ -297,11 +296,6 @@ function App() {
             open={showLicenseNotice}
             onClose={() => setShowLicenseNotice(false)}
           />
-          <ExportImportWrapper
-            open={showExportImport}
-            onClose={() => setShowExportImport(false)}
-            deviceName={connectedDeviceName}
-          />
           <div className="bg-base-100 text-base-content h-full max-h-[100vh] w-full max-w-[100vw] inline-grid grid-cols-[auto] grid-rows-[auto_1fr_auto] overflow-hidden">
             <AppHeader
               connectedDeviceLabel={connectedDeviceName}
@@ -319,7 +313,11 @@ function App() {
               onResetSettings={resetSettings}
               onExportImport={() => setShowExportImport(true)}
             />
-            <Keyboard />
+            <Keyboard
+              showExportImport={showExportImport}
+              onCloseExportImport={() => setShowExportImport(false)}
+              deviceName={connectedDeviceName}
+            />
             <AppFooter
               onShowAbout={() => setShowAbout(true)}
               onShowLicenseNotice={() => setShowLicenseNotice(true)}

@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef } from "react";
+import React, { useState, useCallback, useRef, useEffect } from "react";
 import { Button } from "react-aria-components";
 import {
   Download,
@@ -43,6 +43,7 @@ export const ExportImportModal: React.FC<ExportImportModalProps> = ({
   deviceName,
   onImport,
 }) => {
+  // All hooks must be called unconditionally at the top
   const modalRef = useModalRef(open, true);
   const [activeTab, setActiveTab] = useState<TabType>("export");
   const [copySuccess, setCopySuccess] = useState(false);
@@ -65,13 +66,13 @@ export const ExportImportModal: React.FC<ExportImportModalProps> = ({
   }, [keymap, behaviors, deviceName]);
 
   // Generate preview when tab changes to export
-  React.useEffect(() => {
+  useEffect(() => {
     if (activeTab === "export" && open) {
       generatePreview();
     }
   }, [activeTab, open, generatePreview]);
 
-  const handleCopyToClipboard = async () => {
+  const handleCopyToClipboard = useCallback(async () => {
     if (!keymap) return;
 
     try {
@@ -85,9 +86,9 @@ export const ExportImportModal: React.FC<ExportImportModalProps> = ({
     } catch (error) {
       console.error("Failed to copy to clipboard:", error);
     }
-  };
+  }, [keymap, behaviors, deviceName]);
 
-  const handleDownload = () => {
+  const handleDownload = useCallback(() => {
     if (!keymap) return;
 
     const filename = deviceName
@@ -102,55 +103,67 @@ export const ExportImportModal: React.FC<ExportImportModalProps> = ({
 
     setDownloadSuccess(true);
     setTimeout(() => setDownloadSuccess(false), 2000);
-  };
+  }, [keymap, behaviors, deviceName]);
 
-  const handleFileSelect = async () => {
+  const validateImportContent = useCallback(
+    (content: string) => {
+      const expectedBindings = keymap?.layers[0]?.bindings.length;
+      const result = validateKeymapContent(content, expectedBindings);
+      setValidation(result);
+    },
+    [keymap]
+  );
+
+  const handleFileSelect = useCallback(async () => {
     const content = await readKeymapFile();
     if (content) {
       setImportContent(content);
       validateImportContent(content);
     }
-  };
+  }, [validateImportContent]);
 
-  const handlePasteFromClipboard = async () => {
+  const handlePasteFromClipboard = useCallback(async () => {
     const content = await importFromClipboard();
     if (content) {
       setImportContent(content);
       validateImportContent(content);
     }
-  };
+  }, [validateImportContent]);
 
-  const validateImportContent = (content: string) => {
-    const expectedBindings = keymap?.layers[0]?.bindings.length;
-    const result = validateKeymapContent(content, expectedBindings);
-    setValidation(result);
-  };
+  const handleTextareaChange = useCallback(
+    (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+      const content = e.target.value;
+      setImportContent(content);
+      if (content.trim()) {
+        validateImportContent(content);
+      } else {
+        setValidation(null);
+      }
+    },
+    [validateImportContent]
+  );
 
-  const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const content = e.target.value;
-    setImportContent(content);
-    if (content.trim()) {
-      validateImportContent(content);
-    } else {
-      setValidation(null);
-    }
-  };
-
-  const handleImport = () => {
+  const handleImport = useCallback(() => {
     if (onImport && validation?.isValid && importContent) {
       onImport(importContent);
       onClose();
     }
-  };
+  }, [onImport, validation, importContent, onClose]);
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setImportContent("");
     setValidation(null);
     setPreviewContent("");
     setCopySuccess(false);
     setDownloadSuccess(false);
     onClose();
-  };
+  }, [onClose]);
+
+  // Don't render the modal at all when it's not open
+  // This prevents any potential visibility issues with the dialog element
+  if (!open) {
+    return null;
+  }
 
   return (
     <GenericModal

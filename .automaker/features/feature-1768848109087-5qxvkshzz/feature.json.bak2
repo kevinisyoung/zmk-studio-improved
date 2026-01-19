@@ -1,0 +1,28 @@
+{
+  "category": "Uncategorized",
+  "description": "Allow double-clicking on a key in the key display to automatically select the key drop-down, and allow for quick typing to select what the key behavior of the double-clicked key should be. ",
+  "title": "Add quick key behavior selection via double-click",
+  "images": [],
+  "imagePaths": [],
+  "textFilePaths": [],
+  "skipTests": true,
+  "model": "claude-opus",
+  "thinkingLevel": "none",
+  "reasoningEffort": "none",
+  "branchName": "feature/main-1768848108952-j7ra",
+  "priority": 2,
+  "planningMode": "skip",
+  "requirePlanApproval": false,
+  "dependencies": [],
+  "workMode": "auto",
+  "titleGenerating": false,
+  "status": "backlog",
+  "id": "feature-1768848109087-5qxvkshzz",
+  "descriptionHistory": [
+    {
+      "description": "Allow double-clicking on a key in the key display to automatically select the key drop-down, and allow for quick typing to select what the key behavior of the double-clicked key should be. ",
+      "timestamp": "2026-01-19T18:41:49.130Z",
+      "source": "initial"
+    }
+  ]
+}

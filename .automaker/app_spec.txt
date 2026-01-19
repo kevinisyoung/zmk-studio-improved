@@ -15,6 +15,9 @@
   </core_capabilities>
 
   <implemented_features>
-    <!-- The AI agent will populate this based on code analysis -->
+    <feature>
+      <name>Export configuration to .keymap file</name>
+      <description>Add ability to export ZMK Studio configurations to .keymap files for version control and Git workflow integration. This includes both export and import functionality to enable users to sync their Studio configs with their zmk-config repositories.</description>
+    </feature>
   </implemented_features>
 </project_specification>
