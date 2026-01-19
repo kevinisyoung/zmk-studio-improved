@@ -1,0 +1,16 @@
+{
+  "id": "feature-152",
+  "title": "Key Press should be first and default behaviour in dropdown",
+  "description": "Improve UX by making Key Press the default and first option in the behavior dropdown menu. This is the most common use case and should be prioritized. Includes alphabetical sorting for other options while keeping Key Press at the top.",
+  "status": "backlog",
+  "priority": "medium",
+  "category": "ux-improvements",
+  "metadata": {
+    "githubIssue": 152,
+    "issueUrl": "https://github.com/zmkfirmware/zmk-studio/issues/152",
+    "tags": ["bug", "ux", "quick-win"],
+    "estimatedEffort": "small",
+    "relatedIssues": [75]
+  },
+  "descriptionHistory": []
+}

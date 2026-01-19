@@ -1,0 +1,22 @@
+{
+  "id": "feature-124",
+  "title": "Export configuration to .keymap file",
+  "description": "Add ability to export ZMK Studio configurations to .keymap files for version control and Git workflow integration. This includes both export and import functionality to enable users to sync their Studio configs with their zmk-config repositories.",
+  "status": "verified",
+  "priority": "high",
+  "category": "core-functionality",
+  "metadata": {
+    "githubIssue": 124,
+    "issueUrl": "https://github.com/zmkfirmware/zmk-studio/issues/124",
+    "tags": [
+      "enhancement",
+      "critical",
+      "version-control"
+    ],
+    "estimatedEffort": "large",
+    "upvotes": 9
+  },
+  "startedAt": "2026-01-17T20:16:48.320Z",
+  "descriptionHistory": [],
+  "updatedAt": "2026-01-17T20:31:12.603Z"
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "core-functionality",
+    "name": "Core Functionality",
+    "description": "Essential features that are critical for the application's main purpose",
+    "color": "#e74c3c"
+  },
+  {
+    "id": "ux-improvements",
+    "name": "UX Improvements",
+    "description": "User experience and interface enhancements",
+    "color": "#3498db"
+  },
+  {
+    "id": "accessibility",
+    "name": "Accessibility",
+    "description": "Features that improve accessibility and keyboard-only workflows",
+    "color": "#9b59b6"
+  },
+  {
+    "id": "bug-fixes",
+    "name": "Bug Fixes",
+    "description": "Fixes for existing issues and bugs",
+    "color": "#e67e22"
+  },
+  {
+    "id": "performance",
+    "name": "Performance",
+    "description": "Performance optimizations and improvements",
+    "color": "#2ecc71"
+  }
+]

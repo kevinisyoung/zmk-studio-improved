@@ -1,0 +1,17 @@
+{
+  "id": "feature-159",
+  "title": "Grid Picker for HID Usage",
+  "description": "Implement a grid-based picker UI for HID usage selection. This PR provides an alternative to dropdown selection with a visual grid layout showing all available keys at once. Status: Open PR, mergeable.",
+  "status": "in-progress",
+  "priority": "medium",
+  "category": "ux-improvements",
+  "metadata": {
+    "githubPR": 159,
+    "prUrl": "https://github.com/zmkfirmware/zmk-studio/pull/159",
+    "author": "awkannan",
+    "tags": ["pr", "enhancement", "ui", "mergeable"],
+    "estimatedEffort": "medium",
+    "prStatus": "OPEN"
+  },
+  "descriptionHistory": []
+}

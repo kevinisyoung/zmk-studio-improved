@@ -1,0 +1,16 @@
+{
+  "id": "feature-119",
+  "title": "Keyboard input navigation support",
+  "description": "Add full keyboard navigation support to the UI. Users should be able to navigate the key layout using arrow keys, Tab/Shift-Tab, Enter to select keys, and Escape to return focus. Improves accessibility and enables mouse-free workflow.",
+  "status": "backlog",
+  "priority": "medium",
+  "category": "accessibility",
+  "metadata": {
+    "githubIssue": 119,
+    "issueUrl": "https://github.com/zmkfirmware/zmk-studio/issues/119",
+    "tags": ["enhancement", "accessibility", "ux"],
+    "estimatedEffort": "medium",
+    "relatedIssues": [151, 152]
+  },
+  "descriptionHistory": []
+}

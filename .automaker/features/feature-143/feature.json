@@ -1,0 +1,17 @@
+{
+  "id": "feature-143",
+  "title": "Generate Short Labels for Keys without HID Code",
+  "description": "Improve key labeling system by generating short, readable labels for behaviors that don't have HID codes set as the first parameter. Enhances visual clarity of the keyboard layout display. Status: Open PR, mergeable.",
+  "status": "in-progress",
+  "priority": "medium",
+  "category": "ux-improvements",
+  "metadata": {
+    "githubPR": 143,
+    "prUrl": "https://github.com/zmkfirmware/zmk-studio/pull/143",
+    "author": "aziddy",
+    "tags": ["pr", "enhancement", "ui", "mergeable"],
+    "estimatedEffort": "small",
+    "prStatus": "OPEN"
+  },
+  "descriptionHistory": []
+}
