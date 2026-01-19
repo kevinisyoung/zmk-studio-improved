@@ -8,6 +8,7 @@ interface KeyProps {
   oneU: number;
   header?: string;
   onClick?: () => void;
+  onDoubleClick?: () => void;
 }
 
 interface BehaviorShortName {
@@ -41,6 +42,7 @@ export const Key = ({
   oneU,
   header,
   onClick,
+  onDoubleClick,
   children,
 }: PropsWithChildren<KeyProps>) => {
   const pixelWidth = width * oneU - 2;
@@ -55,6 +57,7 @@ export const Key = ({
         height: `${pixelHeight}px`,
       }}
       onClick={onClick}
+      onDoubleClick={onDoubleClick}
     >
       <div className={`absolute text-xs ${selected ? "text-primary-content" : "z1text-base-content"} opacity-80 top-1 text-nowrap left-1/2 font-light -translate-x-1/2 text-center`}>{shortenHeader(header)}</div>
       {children}

@@ -1,0 +1,35 @@
+{
+  "category": "Uncategorized",
+  "description": "Make the preview in the key map export and import be bigger font size so it looks more normal. ",
+  "title": "",
+  "images": [],
+  "imagePaths": [
+    {
+      "id": "img-1768848282632-wijbf03hx",
+      "path": "/Users/kevin/Documents/savespace/save-space/zmk-studio-improved/.automaker/features/feature-1768848301089-njc25afz4/images/pasted-image-2026-01-19T18-44-42-620Z-1768848282631.png",
+      "filename": "pasted-image-2026-01-19T18-44-42-620Z.png",
+      "mimeType": "image/png"
+    }
+  ],
+  "textFilePaths": [],
+  "skipTests": true,
+  "model": "claude-sonnet",
+  "thinkingLevel": "none",
+  "reasoningEffort": "none",
+  "branchName": "feature/main-1768848300937-21qh",
+  "priority": 2,
+  "planningMode": "skip",
+  "requirePlanApproval": false,
+  "dependencies": [],
+  "workMode": "auto",
+  "titleGenerating": "Make the preview in the key map export and import be bigger font size so it looks more normal.",
+  "status": "backlog",
+  "id": "feature-1768848301089-njc25afz4",
+  "descriptionHistory": [
+    {
+      "description": "Make the preview in the key map export and import be bigger font size so it looks more normal. ",
+      "timestamp": "2026-01-19T18:45:01.111Z",
+      "source": "initial"
+    }
+  ]
+}

@@ -20,6 +20,7 @@ export interface KeymapProps {
   selectedLayerIndex: number;
   selectedKeyPosition: number | undefined;
   onKeyPositionClicked: (keyPosition: number) => void;
+  onKeyPositionDoubleClicked?: (keyPosition: number) => void;
 }
 
 export const Keymap = ({
@@ -30,6 +31,7 @@ export const Keymap = ({
   selectedLayerIndex,
   selectedKeyPosition,
   onKeyPositionClicked,
+  onKeyPositionDoubleClicked,
 }: KeymapProps) => {
   if (!keymap.layers[selectedLayerIndex]) {
     return <></>;
@@ -76,6 +78,7 @@ export const Keymap = ({
       zoom={scale}
       selectedPosition={selectedKeyPosition}
       onPositionClicked={onKeyPositionClicked}
+      onPositionDoubleClicked={onKeyPositionDoubleClicked}
     />
   );
 };

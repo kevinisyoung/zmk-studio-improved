@@ -4,6 +4,7 @@ import React, {
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from "react";
 
@@ -25,7 +26,7 @@ import { Keymap as KeymapComp } from "./Keymap";
 import { useConnectedDeviceData } from "../rpc/useConnectedDeviceData";
 import { ConnectionContext } from "../rpc/ConnectionContext";
 import { UndoRedoContext } from "../undoRedo";
-import { BehaviorBindingPicker } from "../behaviors/BehaviorBindingPicker";
+import { BehaviorBindingPicker, BehaviorBindingPickerRef } from "../behaviors/BehaviorBindingPicker";
 import { produce } from "immer";
 import { LockStateContext } from "../rpc/LockStateContext";
 import { LockState } from "@zmkfirmware/zmk-studio-ts-client/core";
@@ -195,6 +196,7 @@ export default function Keyboard({
     number | undefined
   >(undefined);
   const behaviors = useBehaviors();
+  const behaviorPickerRef = useRef<BehaviorBindingPickerRef>(null);
 
   const conn = useContext(ConnectionContext);
   const undoRedo = useContext(UndoRedoContext);
@@ -311,6 +313,19 @@ export default function Keyboard({
 
     return keymap.layers[selectedLayerIndex].bindings[selectedKeyPosition];
   }, [keymap, selectedLayerIndex, selectedKeyPosition]);
+
+  const handleKeyPositionDoubleClicked = useCallback(
+    (keyPosition: number) => {
+      // First, select the key
+      setSelectedKeyPosition(keyPosition);
+      // Then, after a short delay to allow the BehaviorBindingPicker to render/update,
+      // focus and open the behavior dropdown
+      setTimeout(() => {
+        behaviorPickerRef.current?.focusBehaviorSelect();
+      }, 0);
+    },
+    []
+  );
 
   const moveLayer = useCallback(
     (start: number, end: number) => {
@@ -576,6 +591,7 @@ export default function Keyboard({
               selectedLayerIndex={selectedLayerIndex}
               selectedKeyPosition={selectedKeyPosition}
               onKeyPositionClicked={setSelectedKeyPosition}
+              onKeyPositionDoubleClicked={handleKeyPositionDoubleClicked}
             />
             <select
               className="absolute top-2 right-2 h-8 rounded px-2"
@@ -599,6 +615,7 @@ export default function Keyboard({
         {keymap && selectedBinding && (
           <div className="p-2 col-start-2 row-start-2 bg-base-200">
             <BehaviorBindingPicker
+              ref={behaviorPickerRef}
               binding={selectedBinding}
               behaviors={Object.values(behaviors)}
               layers={keymap.layers.map(({ id, name }, li) => ({

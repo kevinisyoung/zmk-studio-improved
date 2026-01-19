@@ -35,6 +35,7 @@ interface PhysicalLayoutProps {
   hoverZoom?: boolean;
   zoom?: LayoutZoom;
   onPositionClicked?: (position: number) => void;
+  onPositionDoubleClicked?: (position: number) => void;
 }
 
 interface PhysicalLayoutPositionLocation {
@@ -76,6 +77,7 @@ export const PhysicalLayout = ({
   selectedPosition,
   oneU = 48,
   onPositionClicked,
+  onPositionDoubleClicked,
   ...props
 }: PhysicalLayoutProps) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -128,6 +130,7 @@ export const PhysicalLayout = ({
       <div
         key={p.id}
         onClick={() => onPositionClicked?.(idx)}
+        onDoubleClick={() => onPositionDoubleClicked?.(idx)}
         className="hover:[transform:translateZ(100px)] transition-transform duration-200"
       >
         <Key

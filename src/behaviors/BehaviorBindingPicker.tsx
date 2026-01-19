@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { forwardRef, useEffect, useImperativeHandle, useMemo, useRef, useState } from "react";
 
 import {
   GetBehaviorDetailsResponse,
@@ -13,6 +13,10 @@ export interface BehaviorBindingPickerProps {
   behaviors: GetBehaviorDetailsResponse[];
   layers: { id: number; name: string }[];
   onBindingChanged: (binding: BehaviorBinding) => void;
+}
+
+export interface BehaviorBindingPickerRef {
+  focusBehaviorSelect: () => void;
 }
 
 function validateBinding(
@@ -39,15 +43,26 @@ function validateBinding(
   return validateValue(layerIds, param2, matchingSet.param2);
 }
 
-export const BehaviorBindingPicker = ({
+export const BehaviorBindingPicker = forwardRef<BehaviorBindingPickerRef, BehaviorBindingPickerProps>(({
   binding,
   layers,
   behaviors,
   onBindingChanged,
-}: BehaviorBindingPickerProps) => {
+}, ref) => {
   const [behaviorId, setBehaviorId] = useState(binding.behaviorId);
   const [param1, setParam1] = useState<number | undefined>(binding.param1);
   const [param2, setParam2] = useState<number | undefined>(binding.param2);
+  const selectRef = useRef<HTMLSelectElement>(null);
+
+  useImperativeHandle(ref, () => ({
+    focusBehaviorSelect: () => {
+      if (selectRef.current) {
+        selectRef.current.focus();
+        // Simulate a click to open the dropdown on supported browsers
+        selectRef.current.click();
+      }
+    },
+  }));
 
   const metadata = useMemo(
     () => behaviors.find((b) => b.id == behaviorId)?.metadata,
@@ -103,6 +118,7 @@ export const BehaviorBindingPicker = ({
       <div>
         <label>Behavior: </label>
         <select
+          ref={selectRef}
           value={behaviorId}
           className="h-8 rounded"
           onChange={(e) => {
@@ -130,4 +146,4 @@ export const BehaviorBindingPicker = ({
       )}
     </div>
   );
-};
+});

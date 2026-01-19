@@ -7,7 +7,7 @@
       "title": "Feature Ready for Review",
       "message": "\"feature-1768847352329-wkho7lbo7\" is ready for your review and approval.",
       "createdAt": "2026-01-19T18:31:52.818Z",
-      "read": false,
+      "read": true,
       "dismissed": false,
       "featureId": "feature-1768847352329-wkho7lbo7",
       "projectPath": "/Users/kevin/Documents/savespace/save-space/zmk-studio-improved"
@@ -18,7 +18,7 @@
       "title": "Feature Verified",
       "message": "\"feature-124\" has been verified and is complete.",
       "createdAt": "2026-01-19T18:38:25.338Z",
-      "read": false,
+      "read": true,
       "dismissed": false,
       "featureId": "feature-124",
       "projectPath": "/Users/kevin/Documents/savespace/save-space/zmk-studio-improved"
@@ -29,9 +29,20 @@
       "title": "Feature Verified",
       "message": "\"feature-124\" has been verified and is complete.",
       "createdAt": "2026-01-19T18:43:09.722Z",
-      "read": false,
+      "read": true,
       "dismissed": false,
       "featureId": "feature-124",
+      "projectPath": "/Users/kevin/Documents/savespace/save-space/zmk-studio-improved"
+    },
+    {
+      "id": "d6b8c3b6-999d-49c1-b1e2-3db7dd327774",
+      "type": "feature_waiting_approval",
+      "title": "Feature Ready for Review",
+      "message": "\"feature-1768848109087-5qxvkshzz\" is ready for your review and approval.",
+      "createdAt": "2026-01-19T18:47:08.625Z",
+      "read": false,
+      "dismissed": false,
+      "featureId": "feature-1768848109087-5qxvkshzz",
       "projectPath": "/Users/kevin/Documents/savespace/save-space/zmk-studio-improved"
     }
   ]
